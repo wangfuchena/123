@@ -1,0 +1,22 @@
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import { fileURLToPath, URL } from 'node:url'
+
+// 部署到 GitHub Pages 时，base 必须是 '/<仓库名>/' 形式。
+// 你的仓库地址是 https://github.com/wangfuchena/123，所以 base 为 '/123/'。
+export default defineConfig({
+  base: '/123/',
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+  server: {
+    host: '127.0.0.1',
+    port: 5173
+  },
+  build: {
+    outDir: 'dist'
+  }
+})
